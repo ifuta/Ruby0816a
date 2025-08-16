@@ -21,31 +21,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.2'
-          bundler-cache: true
-          
-      - name: Install dependencies
-        run: |
-          gem install bundler
-          bundle install
-          
-      - name: Build static site
-        run: |
-          mkdir -p public_html
-          cp -r public/* public_html/
-          cp views/*.erb public_html/
-          cp app.rb public_html/
-          
       - name: Setup Pages
         uses: actions/configure-pages@v4
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './public_html'
+          path: './public'
 
   deploy:
     environment:
